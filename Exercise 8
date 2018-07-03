@@ -1,0 +1,192 @@
+#Rock Paper Scissors
+#Exercise 8
+#Make a two-player Rock-Paper-Scissors game.
+#(Hint: Ask for player plays (using input), compare them, print out a message of congratulations to the winner, and ask if the players want to start a new game)
+
+#Remember the rules:
+# Rock beats scissors
+# Scissors beats paper
+# Paper beats rock
+
+#My first answer
+import random
+rules = ["Rock", "Scissors", "Paper"]
+a = []
+b = []
+player1 = str(input("Would you like to join a two-player Rock-Paper-Scissors game? yes or no"))
+if player1 == "yes":
+    player1 = random.sample(rules, 1)
+    a.append(player1)
+else:
+    print("Bye")
+player2 = str(input("Would you like to join a two-player Rock-Paper-Scissors game? yes or no"))
+if player2 == "yes":
+    player2 = random.sample(rules, 1)
+    b.append(player2)
+else:
+    print("Bye")
+
+
+def beat(player1, player2):
+    if player1 == rules[0] and player2 == rules[1]:
+        return print("you win.")
+    elif player1 == rules[1] and player2 == rules[2]:
+        return print("you win.")
+    elif player1 == rules[2] and player2 == rules[0]:
+        return print("you win.")
+    else:
+        return print("you lose.")
+
+
+beat(player1, player2)
+
+#Concepts for this exercise:
+
+#While loops
+# Infinite loops
+# Break statements
+
+#While loops
+# We have already discussed for loops, or loops that look sequentially (one by one) at elements in a list. There is a second type of loop that works in a slightly different way called a while loop.
+
+#The idea is simple: while a certain condition is True, keep doing something. For example:
+
+#  a = 5
+#  while (a > 0):
+#    print(a)
+#    a -= 1
+#The output of this code segment is:
+
+#  5
+#  4
+#  3
+#  2
+#  1
+# A particularly useful way to use while loops is checking user input for correctness. For example:
+
+#  quit = input('Type "enter" to quit:' )
+#  while quit != "enter":
+#    quit = input('Type "enter" to quit:' )
+# The uses for this are infinite, and can (and should!) be combined with conditionals to yield the most efficient results.
+
+#Infinite loops
+#An infinite loop is a loop that never stops. This means that the condition in the beginning of the while loop will always be true.
+
+#For example:
+
+#  i = 5
+#  while i > 0:
+#    print("Inside the loop")
+# What will happen is the loop will print out the phrase “Inside the loop” forever and ever. If you are running your computer, you will have to “kill the program” to stop it. Each operating system has a different way of “killing a program” to get out of an infinite loop.
+
+#On Linux: in the terminal, type “CTRL-C” to kill the program that is currently running in the terminal. If you are using the IDLE Python IDE, then you must press “CTRL-D” to exit your running program. When in doubt, do a Google search before you start programming!
+
+#On Windows: type “CTRL-ALT-DEL” and open the task manager to kill the program.
+
+#On Mac: right-click on the task, and kill the program that is running forever.
+
+#If you find yourself in an infinite loop, your program will never end.
+
+#Break statements
+# A break statement stops the execution of a loop before the original condition is met. While the use of a break statement will often start an argument about good coding practices, sometimes it is useful.
+
+#For example:
+
+#  while True:
+#    usr_command = input("Enter your command: ")
+#   if usr_command == "quit":
+#      break
+#    else:
+#      print("You typed " + usr_command)
+
+#My second answer
+import random
+rules = ["Rock", "Scissors", "Paper"]
+player1 = str(input("Would you like to join a two-player Rock-Paper-Scissors game? yes or no"))
+player2 = str(input("Would you like to join a two-player Rock-Paper-Scissors game? yes or no"))
+while player1 != "yes" and player2 != "yes":
+    player1 = random.sample(rules, 1)
+    player2 = random.sample(rules, 1)
+    if player1 == rules[0] and player2 == rules[1]:
+        print("you win.")
+    elif player1 == rules[1] and player2 == rules[2]:
+        print("you win.")
+    elif player1 == rules[2] and player2 == rules[0]:
+        print("you win.")
+    else:
+        print("you lose.")
+
+while player1 != "no" or player2 != "no":
+    break
+
+#The answer
+rock = "rock"
+paper = "paper"
+scissors = "scissors"
+
+while True:
+    start_new_game = str(input("Do you want to start a new game? (enter any key for yes, n for no): "))
+    if start_new_game == "n":
+        print("game over!")
+        break
+    else:
+        player1_move = input("Player 1, enter your move (rock, paper, scissors): ")
+        player2_move = input("Player 2, enter your move: (rock, paper, scissors): ")
+    if player1_move == rock and player2_move == scissors or player1_move == paper and player2_move == rock or player1_move == scissors and player2_move == paper:
+        print("Player 1 won the game!")
+    elif player1_move == player2_move:
+        print("It's a tie!")
+    else:
+        print("Player 2 won the game!")
+
+# Other answer
+p_1 = input("What is player 1's request?").lower()
+p_2 = input("What is player 2's request?").lower()
+
+choices = list(["paper", "rock", "scissors"])
+
+if p_1 not in choices:
+    print("you a goof.")
+if p_2 not in choices:
+    print("you a goof.")
+
+if p_1 == p_2:
+    print("It's a draw!")
+if choices.index(p_1) == (choices.index(p_2) + 1) % 3:
+    print("player 2 win!")
+if choices.index(p_2) == (choices.index(p_1) + 1) % 3:
+    print("player 1 win!")
+
+
+
+# Other answer
+print('''Please pick one:
+            rock
+            scissors
+            paper''')
+
+while True:
+    game_dict = {'rock': 1, 'scissors': 2, 'paper': 3}
+    player_a = str(input("Player a: "))
+    player_b = str(input("Player b: "))
+    a = game_dict.get(player_a)
+    b = game_dict.get(player_b)
+    dif = a - b
+
+    if dif in [-1, 2]:
+        print('player a wins.')
+        if str(input('Do you want to play another game, yes or no?\n')) == 'yes':
+            continue
+        else:
+            print('game over.')
+            break
+    elif dif in [-2, 1]:
+        print('player b wins.')
+        if str(input('Do you want to play another game, yes or no?\n')) == 'yes':
+            continue
+        else:
+            print('game over.')
+            break
+    else:
+        print('Draw.Please continue.')
+        print('')
