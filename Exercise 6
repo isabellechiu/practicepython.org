@@ -1,0 +1,12 @@
+string = str(input("Enter a string: \n"))
+for i in string:
+    print("Every letter:" + i)
+
+string = str(input("Enter a string: \n"))
+word = string[::-1]
+if  string == word:
+    print("This string is a palindrome.")
+else:
+    print('This string is not a palindrome.')
+string
+
