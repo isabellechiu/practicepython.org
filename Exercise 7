@@ -1,0 +1,29 @@
+#Exercise 7
+# List Comprehensions
+#Let’s say I give you a list saved in a variable: a = [1, 4, 9, 16, 25, 36, 49, 64, 81, 100].
+#Write one line of Python that takes this list a and makes a new list that has only the even elements of this list in it.
+
+#My answer
+a = [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+b = []
+c = []
+for i in a:
+    if i % i**1/2 == 0:
+        b.append(i)
+    else:
+        c.append(i)
+print(b)
+print(c)
+
+#My answer write in a line
+e = [i for i in a if i % 2 == 0]
+f = [i for i in a if i % 2 != 0]
+print(e)
+print(f)
+
+#The answer
+a = [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+d = [number for number in a if number % 2 == 0]
+print(d)
+
+
