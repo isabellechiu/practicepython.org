@@ -37,8 +37,8 @@ def beat(player1, player2):
     else:
         return print("you lose.")
 
-
 beat(player1, player2)
+#output yes yes return you lose. Wrong coding.
 
 #Concepts for this exercise:
 
