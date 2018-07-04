@@ -1,0 +1,84 @@
+#Exercise 11
+#Check Primality Functions
+# Ask the user for a number and determine whether the number is prime or not.
+#(For those who have forgotten, a prime number is a number that has no divisors.).
+#Discussion:
+# Functions
+# Reusable functions
+# Default arguments
+
+#My answer
+divisor = []
+number = int(input("Please enter a number" + "\n" + ">>>"))
+for i in range(1, number+1):
+    if number%i == 0:
+        divisor.append(i)
+    if len(divisor) == 2:
+        print("This number is prime.", divisor)
+    elif len(divisor) > 2:
+        print("This number is not prime.", divisor)
+
+#My answer using def function
+number = int(input("Enter a number" "\n" ">>>"))
+def prime(number):
+    divisor = []
+    for i in range(1, number+1):
+        if number%i == 0:
+            divisor.append(i)
+        elif len(divisor) == 2:
+            print("This number is prime.", divisor)
+        if len(divisor) > 2:
+            print("This number is not prime.", divisor)
+
+prime(number)
+
+#The answer
+def get_number(prompt):
+    '''Returns integer value for input. Prompt is displayed text'''
+    return int(input(prompt))
+
+
+def is_prime(number):
+    '''Returns True for prime numbers, False otherwise'''
+    # Edge Cases
+    if number == 1:
+        prime = False
+    elif number == 2:
+        prime = True
+    # All other primes
+    else:
+        prime = True
+        for check_number in range(2, (number / 2) + 1):
+            if number % check_number == 0:
+                prime = False
+                break
+    return prime
+
+
+def print_prime(number):
+    prime = is_prime(number)
+    if prime:
+        descriptor = ""
+    else:
+        descriptor = "not "
+    print(number, " is ", descriptor, "prime.", sep="", end="\n\n")
+
+
+# never ending loop
+
+while 1 == 1:
+    print_prime(get_number("Enter a number to check. Ctl-C to exit."))
+
+#Other answer
+def prime_check(num):
+    d = []
+    p = [1, num]
+    for i in range (1, num+1):
+        if num%i == 0:
+            d.append(i)
+        if d == p:
+            print("It is a prime number")
+        else:
+            print("It isnt a prime")
+num = int(input("Enter number to check:"))
+prime_check(num)
