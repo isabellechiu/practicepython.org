@@ -1,0 +1,141 @@
+#Exercise 9
+#Guessing Game One
+
+#Generate a random number between 1 and 9 (including 1 and 9). Ask the user to guess the number, then
+#tell them whether they guessed too low, too high, or exactly right. (Hint: remember to use the user input lessons from the very first exercise)
+
+#Extras:
+
+#1.Keep the game going until the user types “exit”
+
+#2.Keep track of how many guesses the user has taken, and when the game ends, print this out.
+
+
+#My answer -1
+import random
+list = random.sample(range(1, 9), 1)
+user = int(input("Enter a number:"))
+if user < list:
+    print("you guess too low.")
+elif user == list:
+    print("You guess exactly right.")
+else:
+    print("You guess too high.")
+#output:
+#TypeError: '<' not supported between instances of 'int' and 'list'
+
+#My answer -2
+import random
+list = int(random.sample(range(1, 9), 1))
+user = int(input("Enter a number:"))
+if user < list:
+    print("you guess too low.")
+elif user == list:
+    print("You guess exactly right.")
+else:
+    print("You guess too high.")
+output:
+TypeError: int() argument must be a string, a bytes-like object or a number, not 'list'
+
+#My answer -3
+import random
+list = str(random.sample(range(1, 9), 1))
+user = str(input("Enter a number:"))
+if user < list:
+    print("you guess too low.")
+elif user == list:
+    print("You guess exactly right.")
+else:
+    print("You guess too high.")
+output:
+error: always "you guess too low."
+
+#Difference between random.randint and random.sample
+# random.sample(range(1,101),1) will return a singleton list containing an integer, whereas random.randint(1,100) will directly return the integer itself.
+# Note that random.randint is an inclusive bound (i.e. it can return either of the endpoints)
+# You could also use random.choice(range(1, 101)) to get the integer.
+# In any case, I'd assume that randint is the fastest option.
+
+#My correct answer
+import random
+count = 1
+user = 0
+list = random.randint(1, 9)
+# or list = random.choice(range(1, 9))
+
+while user != list and user != "q":
+    user = int(input("Enter a number: or type q to quit."))
+    if user == "q":
+        break
+    if user < list:
+        print("you guess too low. The number is:", list, "and you have tried:", count)
+        count += 1
+    elif user == list:
+        print("You guess exactly right. The number is:", list, "and you have tried:", count)
+        count += 1
+    else:
+        print("You guess too high. The number is:", list, "and you have tried:", count)
+        count += 1
+
+#The answer
+import random
+
+number = random.randint(1, 9)
+guess = 0
+count = 0
+
+while guess != number and guess != "exit":
+    guess = input("What's your guess?")
+
+    if guess == "exit":
+        break
+
+    guess = int(guess)
+    count += 1
+
+    if guess < number:
+        print("Too low!")
+    elif guess > number:
+        print("Too high!")
+    else:
+        print("You got it!")
+        print("And it only took you", count, "tries!")
+
+#Other answer
+import random
+
+# Awroken
+
+MINIMUM = 1
+MAXIMUM = 9
+NUMBER = random.randint(MINIMUM, MAXIMUM)
+GUESS = None
+ANOTHER = None
+TRY = 0
+RUNNING = True
+
+print("Alright...")
+
+while RUNNING:
+    GUESS = input("What is your lucky number? ")
+    if int(GUESS) < NUMBER:
+        print("Wrong, too low.", NUMBER)
+    elif int(GUESS) > NUMBER:
+        print("Wrong, too high.", NUMBER)
+    elif GUESS.lower() == "exit":
+        print("Better luck next time.", NUMBER)
+    elif int(GUESS) == NUMBER:
+        print("Yes, that's the one, %s." % str(NUMBER))
+        if TRY < 2:
+            print("Impressive, only %s tries." % str(TRY))
+        elif TRY > 2 and TRY < 10:
+            print("Pretty good, %s tries." % str(TRY))
+        else:
+            print("Bad, %s tries." % str(TRY))
+        RUNNING = False
+    TRY += 1
+
+#What does %s mean in Python?
+#"Hello %s, my name is %s" % ('john', 'mike') # Hello john, my name is mike".
+#If you are using ints instead of string, use %d instead of %s.
+#"My name is %s and i'm %d" % ('john', 12) #My name is john and i'm 12.
